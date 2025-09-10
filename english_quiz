@@ -1,0 +1,19 @@
+problems = ["교실", "선생님", "학생", "가방", "영어"]
+answers = ["classroom", "teacher", "student", "bag", "english"]
+
+print("퀴즈 맞추기를 시작하겠습니다")
+print("한글을 보고 영어로 맞추면 됩니다.")
+print("소문자로 입력해주세요")
+
+count = 0
+for i in range(len(problems)):
+    print(i + 1, "번 문제입니다")
+    str1 = input(problems[i] + ": ")
+
+    if str1 == answers[i]:
+        print("맞췄습니다")
+        count = count + 1
+    else:
+        print("틀렸습니다")
+
+print("총", len(problems), "문제 중", count, "개 맞췄습니다.")
