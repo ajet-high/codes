@@ -1,0 +1,68 @@
+#파이썬 기초문법 1차.
+
+#1. 숫자 2개를 입력받아 그 차를 출력
+
+num1 = int(input())
+num2 = int(input())
+
+if num1 > num2:
+    print(num1 - num2)
+else:
+    print(num2 - num1)
+
+#2. 1부터 100까지의 합을 구해서 출력
+sum = 0
+n = 0
+
+while n < 100:
+    n = n + 1
+    sum = sum + n
+print(sum)
+
+#3. 숫자를 10번 입력받아 홀수, 짝수를 판별해 출력
+for i in range(10):
+    num = int(input())
+
+    if num % 2 == 0:
+        print("짝")
+    else:
+        print("홀")
+
+#4. 숫자를 입력받아 그 수의 약수를 모두 출력
+num = int(input())
+
+n = 0
+cnt = 0
+while n < num:
+    n = n + 1
+    if num % n == 0:
+        print(n)
+        cnt = cnt + 1
+print("약수갯수", cnt)
+
+#5. 성적을 입력받아
+'''90점 이상이면 A
+80점 이상이면 B
+70점 이상이면 C
+60점 이상이면 D
+60점 미만이면 F 를 출력
+
+성적을 계속 입력받으면서 학점 출력. 0을 입력하면 종료.'''
+
+while True:
+   
+    score = int(input())
+
+    if score == 0:
+        break
+
+    if score >= 90:
+        print("A")
+    elif score >= 80:
+        print("B")
+    elif score >= 70:
+        print("C")
+    elif score >= 60:
+        print("D")
+    else:
+        print("F")
