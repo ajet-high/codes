@@ -2,43 +2,43 @@
 
 #1. 숫자 2개를 입력받아 그 차를 출력
 
-num1 = int(input())
-num2 = int(input())
+num1 = int(input())                                     # 변수에 입력받은 문자열을 정수(int) 로 바꿔서 저장
+num2 = int(input())                                     # 두번째 변수
 
-if num1 > num2:
-    print(num1 - num2)
-else:
-    print(num2 - num1)
+if num1 > num2:                                         # 만약 첫번째 숫자가 두번째 숫자보다 크다면
+    print(num1 - num2)                                  # 첫번째 숫자에서 두번째 숫자를 빼서 출력
+else:                                                   # 아니면 ( 두번째 숫자가 클 경우)
+    print(num2 - num1)                                  # 두번째 숫자에서 첫번째 숫자를 빼서 출력
 
 #2. 1부터 100까지의 합을 구해서 출력
-sum = 0
-n = 0
+sum = 0                                                 # 합을 저장하기 위한 변수
+n = 0                                                   # 1부터 100까지 세기 위한 변수 초기화
 
-while n < 100:
-    n = n + 1
-    sum = sum + n
-print(sum)
+while n < 100:                                          # 증가하는 숫자가 100보다 작을 동안(while) 반복한다. 부등호의 방향에 주의한다.
+    n = n + 1                                           # n 이 1증가 (1, 2, 3, 4, ,,, 100)
+    sum = sum + n                                       # 증가한 n을 sum에 더한다.
+print(sum)                                              # 반복문이 끝나면 sum 출력. print 가 while 범위 안에 있으면 계속 출력되므로, 마지막에 한번만 출력한다
 
 #3. 숫자를 10번 입력받아 홀수, 짝수를 판별해 출력
-for i in range(10):
-    num = int(input())
+for i in range(10):                                     # 10번 반복하기 위해서 for 를 사용
+    num = int(input())                                  # 입력받은 문자열을 숫자로 바꿔서 num 에 저장
 
-    if num % 2 == 0:
-        print("짝")
-    else:
-        print("홀")
+    if num % 2 == 0:                                    # 만약 num 을 2로 나눈 나머지가 0과 같다(==)면 
+        print("짝")                                     # 짝수
+    else:                                               # 아니면
+        print("홀")                                     # 홀수
 
-#4. 숫자를 입력받아 그 수의 약수를 모두 출력
-num = int(input())
+#4. 숫자를 입력받아 그 수의 약수를 모두 출력              # 숫자 a 가 숫자 b로 나누어 떨어질 때, a를 b의 배수라고 하고, b를 a의 약수라고 한다.
+num = int(input())                                      # num 을 숫자로 입력받는다.
 
-n = 0
-cnt = 0
-while n < num:
-    n = n + 1
-    if num % n == 0:
-        print(n)
-        cnt = cnt + 1
-print("약수갯수", cnt)
+n = 0                                                   # 1부터 입력한 숫자까지 세기 위한 변수 n
+cnt = 0                                                 # 약수의 갯수를 세기 위한 count 를 줄여서 cnt 로 초기화
+while n < num:                                          # n이 num 보다 작을 동안 계속 반복
+    n = n + 1                                           # n 을 1씩 증가시킨다
+    if num % n == 0:                                    # 만약 처음 입력한 num 이 n 으로 나누어떨어진다면 ( num을 n으로 나눈 나머지가 0이라면)
+        print(n)                                        # 약수인 n 을 출력
+        cnt = cnt + 1                                   # 약수의 갯수 증가
+print("약수갯수", cnt)                                  # 반복문이 모두 끝난 뒤, 갯수를 출력한다
 
 #5. 성적을 입력받아
 '''90점 이상이면 A
@@ -49,20 +49,20 @@ print("약수갯수", cnt)
 
 성적을 계속 입력받으면서 학점 출력. 0을 입력하면 종료.'''
 
-while True:
+while True:                                            # while은 뒤에 있는 조건이 '참' 일 동안 반복되는데, True 는 항상 참이므로 무한반복
    
-    score = int(input())
+    score = int(input())                               # 점수를 숫자형으로 입력받는다
 
-    if score == 0:
-        break
+    if score == 0:                                     # 입력받은 숫자가 0이면 
+        break                                          # 반복문 종료. break 는 for, while 등의 반복문을 즉각 종료한다.
 
-    if score >= 90:
-        print("A")
-    elif score >= 80:
-        print("B")
+    if score >= 90:                                    # 만약 점수가 90 이상이라면
+        print("A")                                     # A 출력
+    elif score >= 80:                                  # 그렇지 않고(90 미만) 80 이상이라면
+        print("B")                                     # B 출력
     elif score >= 70:
         print("C")
     elif score >= 60:
         print("D")
-    else:
-        print("F")
+    else:                                              # 위의 모든 경우에 해당하지 않는다면
+        print("F")                                     # F 를 출력
