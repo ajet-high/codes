@@ -1,31 +1,31 @@
-import random
+import random                                                   # 난수를 사용하기 위한 random 모듈 불러오기
 
-command = [0, "가위", "바위", "보"]
+command = [0, "가위", "바위", "보"]                               # 리스트 안에 가위바위보를 넣어둔다. 1인덱스-가위, 2인덱스-바위, 3인덱스-보. 0이 없었다면 0가위, 1바위, 2보 로 세야 하는데 1, 2, 3 이 더 쉬움.
 
-print("가위바위보를 10판 하겠습니다. 1) 가위 2) 바위 3) 보")
-print("숫자를 입력하시면 됩니다.")
+print("가위바위보를 10판 하겠습니다. 1) 가위 2) 바위 3) 보")            # 게임 소개
+print("숫자를 입력하시면 됩니다.")                             
 
-print()
+print()                                                         # 빈 줄
 
-cnt = 0
+cnt = 0                                                         # 이긴 횟수를 세기 위한 변수 count 를 줄인 cnt
 
-for i in range(10):
-    com = random.randint(1, 3)
-    human = int(input("무엇을 내시겠습니까? ( 1 2 3 ) : "))
+for i in range(10):                                             # 10번 반복
+    com = random.randint(1, 3)                                  # 컴퓨터가 무엇을 낼지 1, 2, 3 중 하나로 정한다. random 모듈의 randint 함수를 사용. randint 는 random integer 정수형 난수 의 축약형.
+    human = int(input("무엇을 내시겠습니까? ( 1 2 3 ) : "))         # 사람이 무엇을 낼지 입력받아서 숫자로 변환해둔다.
 
-    print("컴퓨터:", command[com], " 사람:", command[human])
+    print("컴퓨터:", command[com], " 사람:", command[human])      # 각각 무엇을 냈는지, 리스트 command 에서 인덱스로 찾는다. 컴퓨터가 낸 숫자가 2 였다면, command[2] 로 바위가 된다.
 
-    if (com == 1 and human == 2) or \
-       (com == 2 and human == 3) or \
-       (com == 3 and human == 1) :
-        print("당신이 이겼습니다")
-        cnt = cnt + 1
+    if (com == 1 and human == 2) or \                           # 만약 (컴퓨터가 1 이고and, 사람이 2이다) 또는        \ 은 하나의 문장이 길어질 때 다음 줄에서 이어쓸 수 있게 해준다.
+       (com == 2 and human == 3) or \                           #      (컴퓨터가 2 이고and, 사람이 3이다) 또는
+       (com == 3 and human == 1) :                              #       (컴퓨터가 3 이고and, 사람이 1이다) 라면,
+        print("당신이 이겼습니다")                                  # 사람의 승리를 알리고
+        cnt = cnt + 1                                           # 이긴 횟수를 1증가해서 저장
 
-    elif com == human:
-        print("비겼습니다")
+    elif com == human:                                          # 그렇지 않고 만약, (elif 는 c 의 else if 와 같은 기능) 컴퓨터와 사람이 낸 것이 같다면
+        print("비겼습니다")                                       # 비겼음을 알림
 
-    else:
-        print("당신이 졌습니다")
-    print()
+    else:                                                      # 둘다 아니라면, 진 것. 만약 if 와 elif 조건의 확인에서 비겼는지를 미리 판단하지 않았다면, 코드가 더 길어진다.
+        print("당신이 졌습니다")                                  # 사람이 졌음을 알림
+    print()                                                    # 알아보기 쉽게, 게임 한 번이 끝날 때, 빈줄을 추가한다.
 
-print("총 이긴 횟수는", cnt, "번입니다")
+print("총 이긴 횟수는", cnt, "번입니다")                           # 모든 반복이 끝난 후, 총 이긴 횟수를 알림.
