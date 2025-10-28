@@ -1,0 +1,15 @@
+import random
+
+n = int(input("몇개 뽑을까요 :"))
+
+for i in range(n):
+    lottos = []
+
+    while len(lottos) < 6:
+        ball = random.randint(1, 45)
+        while ball in lottos:
+            ball = random.randint(1, 45)
+
+        lottos.append(ball)
+
+    print(lottos)
