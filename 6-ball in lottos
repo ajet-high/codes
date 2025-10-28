@@ -1,15 +1,15 @@
-import random
+import random                                 # 난수를 사용하기 위한 random 모듈 불러오기
 
-n = int(input("몇개 뽑을까요 :"))
+n = int(input("몇개 뽑을까요 :"))                # " " 안의 문자열을 출력한 후 입력받은 대답을 int(정수)로 바꿔 n 에 저장
 
-for i in range(n):
-    lottos = []
+for _ in range(n):                            # n 번 반복 ( _ 는 반복문 안에서 반복변수를 사용하지 않는다는 의도의 표시 )
+    lottos = []                               # 빈 리스트 만들기
 
-    while len(lottos) < 6:
-        ball = random.randint(1, 45)
-        while ball in lottos:
-            ball = random.randint(1, 45)
+    while len(lottos) < 6:                    # 리스트의 원소 갯수가 6 이 되면 종료되는 조건반복
+        ball = random.randint(1, 45)          # 1 부터 45까지의 난수를 발생해 ball 에 저장
+        while ball in lottos:                 # 뽑은 ball 의 숫자가 이미 lottos 리스트에 있다면
+            ball = random.randint(1, 45)      # 다시 뽑는다.   즉, 새로운 숫자가 뽑힐 때까지 반복
 
-        lottos.append(ball)
+        lottos.append(ball)                   # 새로운 숫자를 lottos 에 추가
 
-    print(lottos)
+    print(lottos)                             # 뽑은 6개 숫자를 출력
