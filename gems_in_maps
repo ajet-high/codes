@@ -1,0 +1,60 @@
+import random
+
+maps = [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]
+
+hp = 10
+gems = 0
+
+while gems < 5:
+    x = random.randint(0, 9)
+    y = random.randint(0, 9)
+    while maps[x][y] != 0:
+        x = random.randint(0, 9)
+        y = random.randint(0, 9)
+    gems = gems + 1
+    maps[x][y] = 1
+
+player_x = random.randint(0, 9)
+player_y = random.randint(0, 9)
+while maps[player_x][player_y] != 0:
+    player_x = random.randint(0, 9)
+    player_y = random.randint(0, 9)
+
+cnt = 0
+while gems > 0:
+
+    for i in range(10):
+        for j in range(10):
+            if i == player_x and j == player_y:
+                print("H", end = ' ')
+            elif maps[i][j] == 0:
+                print('.', end = ' ')
+            elif maps[i][j] == 1:
+                print("G", end = ' ')
+            
+        print()
+    print("남은 보석수", gems)
+    print("총 걸음", cnt)
+        
+    command = input("어디로 이동하시겠습니까")
+    cnt = cnt + 1
+    if command == 'U' and player_x > 0: player_x = player_x - 1
+    elif command == 'D' and player_x < 9: player_x = player_x + 1
+    elif command == 'L' and player_y > 0: player_y = player_y - 1
+    elif command == 'R' and player_y < 9: player_y = player_y + 1
+
+    if maps[player_x][player_y] == 1:
+        maps[player_x][player_y] = 0
+        gems = gems - 1
+
+print("모든 보석을 모았습니다")
+    
