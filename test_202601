@@ -1,0 +1,125 @@
+# 11. 1부터 100까지의 무작위 정수를 뽑아 리스트에 10개 추가하기
+
+import random
+
+nums = []
+
+for i in range(10):
+    nums.append(random.randint(1, 100))
+
+print(nums)
+
+# 12. 입력 받은 문자열 거꾸로 출력하기(인덱스)
+
+str1 = input()
+
+for i in range(len(str1) - 1, -1, -1):
+    print(str1[i], end = '')
+print()
+
+# 13. 20개의 피보나치 수열 출력하기 [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144 ...]
+pibo = [0, 1]
+
+for i in range(2, 20):
+    pibo.append(pibo[i - 2] + pibo[i - 1])
+
+print(pibo)
+
+# 14. 입력받은 수의 약수 출력하기
+num = int(input())
+
+for i in range(1, num + 1):
+    if num % i == 0:
+        print(i)
+
+# 15. 1부터 100까지의 난수 10개가 있는 리스트의 최대값, 최소값 출력하기
+import random
+
+nums = []
+for i in range(10):
+    nums.append(random.randint(1, 100))
+
+max_num = nums[0] # 0
+min_num = nums[0] # 101
+
+for i in range(10):
+    if nums[i] > max_num:
+        max_num = nums[i]
+    if nums[i] < min_num:
+        min_num = nums[i]
+
+print(max_num, min_num)
+
+# 16. 입력받은 두 수 사이에 있는 모든 수의 합을 구하기
+num1 = int(input())
+num2 = int(input())
+
+if num1 < num2:
+    min_num = num1
+    max_num = num2
+else:
+    min_num = num2
+    max_num = num1
+
+sum = 0
+for i in range(min_num, max_num + 1):
+    sum = sum + i
+
+print(f"합은 {sum}입니다.")
+
+# 17. 소수점 둘째자리까지 출력하기
+float_num = 3.141592
+
+print(f"{float_num:.2f}")
+
+
+
+# 18. 두 수의 공약수 출력하기
+num1 = int(input())
+num2 = int(input())
+
+if num1 < num2:
+    num = num1
+else:
+    num = num2
+
+for i in range(1, num + 1):
+    if num1 % i == 0 and num2 % i == 0:
+        print(i)
+
+# 19. 문자열을 입력받아, 거꾸로 해도 똑같은지 확인하기(팰린드롬)
+# ex) abcba
+
+str1 = input()
+is_palindrome = 1
+for i in range(len(str1) // 2):
+    if str1[i] != str1[len(str1) - 1 - i]:
+        is_palindrome = 0
+
+if is_palindrome:
+    print("거꾸로 해도 똑같음")
+else:
+    print("거꾸로 하면 똑같지 않음")
+
+# 20. 연도를 입력받아 윤년인지 출력하기
+
+year = int(input())
+
+if year % 4 == 0:
+    if year % 100 == 0:
+        if year % 400 == 0:
+            print("윤년입니다")
+        else:
+            print("윤년이 아닙니다")
+    else:
+        print("윤년입니다")
+else:
+    print("윤년이 아닙니다")
+
+# 20. 짧은 버전
+
+year = int(input())
+if (year % 400 == 0) or (year % 4 == 0 and year % 100 != 0):
+    print("윤년입니다")
+else:
+    print("윤년이 아닙니다")
