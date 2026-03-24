@@ -1,0 +1,13 @@
+scores = [100, 98, 54, 68, 72]         # 점수를 준비한다
+
+
+rank = [1] * len(scores)               # 처음 랭킹은 모두 1등으로 세팅
+
+for i in range(len(scores)):           # 기준 점수를 순회
+    for j in range(len(scores)):       # 비교할 점수를 순회
+        #print(scores[i], scores[j])     출력해보면 기준점수, 비교점수가 출력된다.
+        if scores[i] < scores[j]:      # 기준보다 더 큰 점수가 있다면 ( 나보다 더 점수가 높은 사람 )
+            rank[i] += 1               # 갯수를 센다 (랭킹 숫자가 증가한다)
+    #print()
+
+print(rank)                            # 전체 출력
