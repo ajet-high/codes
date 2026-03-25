@@ -1,0 +1,9 @@
+# 숫자를 입력받아 그 숫자의 구구단을 출력하는 함수를
+# 정의 하시오.
+
+def gugudan(num):
+    for i in range(1, 10):
+        print(num,"*", i, "=", num * i)
+
+n = int(input())
+gugudan(n)
