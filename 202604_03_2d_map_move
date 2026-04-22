@@ -1,0 +1,73 @@
+import random
+
+maps = [[0 for j in range(15)] for i in range(15)]
+
+player_x = random.randint(1, len(maps) - 2)
+player_y = random.randint(1, len(maps) - 2)
+
+treasure_x = random.randint(1, len(maps) - 2)
+treasure_y = random.randint(1, len(maps) - 2)
+
+monster_x = random.randint(1, len(maps) - 2)
+monster_y = random.randint(1, len(maps) - 2)
+
+for i in range(len(maps)):
+    for j in range(len(maps[i])):
+        if i == 0 or i == len(maps) - 1 or j == 0 or j == len(maps[0]) - 1:
+            maps[i][j] = "+"
+
+hp = 100
+monster_hp = 30
+cnt = 0
+
+for _ in range(50):
+    for i in range(len(maps)):
+        for j in range(len(maps[i])):
+            if i == player_x and j == player_y:
+                print("*", end = '')
+            elif maps[i][j] == 0:
+                print(" ", end = '')
+            else:
+                print(maps[i][j], end = '')
+        print()
+
+    if monster_x == player_x and monster_y == player_y:
+        print("몬스터를 만났습니다")
+        while monster_hp > 0 and hp > 0:
+            print(monster_hp, hp)
+            command = int(input("무엇을 하시겠습니까 1. 공격 2. 방어"))
+            monster_power = 10
+            if command == 1:
+                print("공격을 합니다")
+                damage = random.randint(1, 10)
+                print("몬스터에게", damage, "의 데미지")
+                monster_hp = monster_hp - damage
+               
+            else:
+                monster_power = 5
+            damage = random.randint(1, monster_power)
+            print("몬스터가 공격했습니다", damage, "의 데미지")
+            hp = hp - damage
+        if monster_hp <= 0:
+            print("몬스터를 무찔렀습니다.")
+        else:
+            print("모험이 종료되었습니다")
+
+
+
+    if treasure_x == player_x and treasure_y == player_y:
+        print("보물을 찾았습니다. 축하합니다", cnt)
+    else:
+        print("보물까지 거리", abs(treasure_x - player_x) + abs(treasure_y - player_y))
+        #print("몬스터까지 거리", abs(monster_x - player_x) + abs(monster_y - player_y))
+       
+
+    direct = input("움직일 방향을 정하세요 U D L R : ")
+
+    if direct == 'U' and 1 < player_x: player_x = player_x - 1
+    elif direct == 'D' and player_x < len(maps) - 2: player_x = player_x + 1
+    elif direct == 'L' and 1 < player_y: player_y = player_y - 1
+    elif direct == 'R' and player_y < len(maps[0]) - 2: player_y = player_y + 1
+    else: print("잘못 입력하셨습니다.")
+
+    cnt = cnt + 1
