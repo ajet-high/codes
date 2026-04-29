@@ -1,0 +1,13 @@
+import random
+
+scores = [[0 for j in range(5)] for i in range(4)]
+
+for i in range(4):
+    for j in range(4):
+        scores[i][j] = random.randint(50, 100)
+        scores[i][4] = scores[i][4] + scores[i][j]
+
+for i in range(4):
+    for j in range(5):
+        print(scores[i][j], end = ' ')
+    print()
