@@ -1,0 +1,16 @@
+# 2차원 배열의 합 구성하기
+
+
+import random
+
+scores = [[0 for j in range(5)] for i in range(4)]
+
+for i in range(len(scores)):
+    for j in range(len(scores[0]) - 1):
+        scores[i][j] = random.randint(50, 100)
+
+for i in range(len(scores)):
+    for j in range(len(scores[0]) - 1):
+        print(scores[i][j], end = ' ')
+        scores[i][len(scores[0]) - 1] += scores[i][j]
+    print(scores[i][len(scores[0]) - 1])
