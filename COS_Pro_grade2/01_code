@@ -37,15 +37,26 @@ print(solution(96900, "S"))
 '''
 
 '''3번
-day_of_month = [0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
-
 def solution(start_month, start_day, end_month, end_day):
-    start = day_of_month[start_month - 1] + start_day
-    end = day_of_month[end_month - 1] + end_day
 
-    return end - start
+    days = [0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+
+    start = 0
+    for i in range(start_month):
+        start = start + days[i]
+    start = start + start_day
+
+    end = 0
+    for i in range(end_month):
+        end = end + days[i]
+    end = end + end_day
+
+    result = end - start
+    return result
+
 
 print(solution(1, 2, 2, 2))
+
 '''
 
 '''4번
