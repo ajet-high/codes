@@ -101,10 +101,10 @@ for i in range(2, 10):
 
 '''
 
-# 8, 단 범위 입력받아 구구단 출력하기
-
-num1 = int(input("몇단으로 시작할까요"))
-num2 = int(input("몇단으로 끝낼까요"))
+# 8, 단 범위 숫자 2개 입력받아 구구단 출력하기. 3단부터 6단이면 3 6  이렇게 입력받는다
+num1, num2 = input().split()
+num1 = int(num1)
+num2 = int(num2)
 
 for i in range(num1, num2 + 1):
     for j in range(1, 10):
