@@ -1,0 +1,150 @@
+# 인덱스 연습.
+
+'''
+# 1. 숫자를 입력받아 그대로 출력하기
+
+
+n = int(input("숫자 갯수를 입력하세요"))
+
+arr = [0 for i in range(n)]
+
+for i in range(n):
+    arr[i] = int(input(f'{i + 1} 번째 숫자를 입력하세요 : '))
+
+for i in range(n):
+    print(arr[i], end = ' ')
+print()
+                    
+'''
+
+'''
+# 2. 난수 저장하고 순서대로 한줄씩 출력하기
+
+import random
+
+arr = [0 for i in range(10)]
+
+for i in range(len(arr)):
+    arr[i] = random.randint(1, 100)
+
+for i in range(len(arr)):
+    print(arr[i])
+'''
+
+
+'''
+
+# 3. 리스트의 숫자 거꾸로 이어서 출력하기
+
+arr = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+for i in range(len(arr) - 1, -1, -1):
+    print(arr[i], end = ' ')
+
+'''
+
+'''
+# 4. 리스트의 숫자 합 출력하기
+import random
+
+arr = [random.randint(1, 100) for i in range(10)]
+
+n_sum = 0
+
+for i in range(len(arr)):
+    n_sum = n_sum + arr[i]
+
+print(arr)
+print(n_sum)
+'''
+
+'''
+
+# 5. 리스트의 최대 최소값 출력하기
+arr = [12, 34, 56, 78, 90, 77, 66, 55, 44, 33, 22, 11]
+
+max_num = arr[0]
+min_num = arr[0]
+
+for i in range(len(arr)):
+    if arr[i] > max_num:
+        max_num = arr[i]
+    if arr[i] < min_num:
+        min_num = arr[i]
+
+print(f"최대값은 {max_num} 최소값은 {min_num}입니다.")
+
+'''
+
+'''
+# 6. 리스트의 모든 숫자 출력 뒤에, 합 출력하기 
+
+arr = [12, 34, 56, 78, 90, 77, 66, 55, 44, 33, 22, 11]
+
+sum_arr = 0
+
+for i in range(len(arr)):
+    sum_arr = sum_arr + arr[i]
+    print(arr[i], end = ' ')
+
+print("모두 더하면", sum_arr)
+'''
+
+'''
+# 7. 구구단 출력하기
+
+for i in range(2, 10):
+    for j in range(1, 10):
+        print(i, "*", j, "=", i * j)
+    print()
+'''
+
+'''
+
+# 8, 단 범위 입력받아 구구단 출력하기
+
+num1 = int(input("몇단으로 시작할까요"))
+num2 = int(input("몇단으로 끝낼까요"))
+
+for i in range(num1, num2 + 1):
+    for j in range(1, 10):
+        print(i, "*", j, "=", i * j)
+    print()
+'''
+
+'''
+# 9. 2차원 배열 모든 내용 출력하기
+
+arr = [[1, 2, 3, 4, 5],
+       [6, 7, 8, 9, 10],
+       [11, 12, 13, 14, 15],
+       [16, 17, 18, 19, 20]]
+
+for i in range(len(arr)):
+    for j in range(len(arr[i])):
+        print(arr[i][j], end = ' ')
+    print()
+'''
+
+'''
+# 10. up, down 숫자 맞추기
+
+import random
+
+num = random.randint(1, 1000)
+
+cnt = 0
+
+while True:
+    cnt = cnt + 1
+
+    answer = int(input("맞춰 보세요"))
+
+    if answer > num:
+        print("더 작아요")
+    elif answer < num:
+        print("더 커요")
+    else:
+        print(cnt, "번만에 맞췄어요")
+        break
+'''    
