@@ -95,3 +95,84 @@ def solution(arr):
 print(solution([1, 4, 2, 3]))
 
 '''
+
+'''6번
+def solution(number):
+    result = 0
+    for i in range(1, number + 1):
+        cur = i        
+        while cur > 0:
+            if cur % 10 == 3 or cur % 10 == 6 or cur % 10 == 9:
+                result = result + 1
+            cur = cur // 10
+
+    return result
+
+print(solution(40))
+'''
+
+
+'''7번
+def solution(scores):
+    result = 0
+    for i in range(len(scores)):
+        if 650 <= scores[i] < 800:
+            result = result + 1
+    return result
+
+print(solution([650, 722, 914, 558, 714, 803, 650, 679, 669, 800]))
+'''
+
+
+
+'''8번
+def solution(sentence):
+    conv = ''
+    for i in range(len(sentence)):
+        if sentence[i] != ' ' and sentence[i] != '.':
+            conv = conv + sentence[i]
+
+    for i in range(len(conv) // 2):
+        if conv[i] != conv[len(conv) - 1 - i]:
+            return False
+
+    return True
+
+print(solution("never odd or even."))
+print(solution("palindrome"))
+'''
+
+
+'''9번
+def solution(characters):
+    result = characters[0]
+
+    for i in range(1, len(characters)):
+        if characters[i] != characters[i - 1]:
+            result = result + characters[i]
+
+    return result
+
+print(solution("senteeeenccccceeee"))
+'''
+
+
+'''10번
+def solution(data):
+    result = 0
+
+    data_sum = 0
+    for i in range(len(data)):
+        data_sum = data_sum + data[i]
+
+    data_avg = data_sum / len(data)
+
+    for i in range(len(data)):
+        if data_avg >= data[i]:
+            result = result + 1
+
+    return result
+
+print(solution([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]))
+print(solution([1, 1, 1, 1, 1, 1, 1, 1, 1, 10]))
+'''
