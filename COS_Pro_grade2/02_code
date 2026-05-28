@@ -1,0 +1,183 @@
+''' 1번
+def solution(left_gloves, right_gloves):
+
+    count_left = [0 for i in range(11)]
+    count_right = [0 for i in range(11)]
+
+    for i in range(len(left_gloves)):
+        count_left[left_gloves[i]] += 1 # a = a + 1을 a += 1 로 줄여서 사용할 수 있다.
+
+    for i in range(len(right_gloves)):
+        count_right[right_gloves[i]] += 1
+
+    result = 0
+
+    for i in range(1, 11):
+        result += min(count_left[i], count_right[i]) # min(값1, 값2, ,,) 또는 min(리스트 이름) 을 사용해서 최소값을 간단히 구할 수 있다.
+
+
+    return result
+
+
+print(solution([2, 1, 2, 2, 4], [1, 2, 2, 4, 4, 7]))
+'''
+
+'''2번
+
+def solution(arr):
+
+    count_three = 0
+    count_five = 0
+
+    for i in range(len(arr)):
+
+        if arr[i] % 3 == 0:
+            count_three += 1
+
+        if arr[i] % 5 == 0:
+            count_five += 1
+
+    if count_three > count_five:
+        return "three"
+    elif count_three < count_five:
+        return "five"
+    else:
+        return "same"
+
+print(solution([2, 3, 6, 9, 12, 15, 10, 20, 22, 25]))
+'''
+
+'''3번
+def solution(N, M):
+    
+    result = 0
+
+    for i in range(N, M + 1):
+
+        if i % 2 == 0:
+            result += i * i # 또는 i ** 2 로도 쓸 수 있다.
+
+    return result
+
+print(solution(4, 7))
+
+'''
+
+'''4번
+def solution(words):
+
+    result = ''
+
+    for i in range(len(words)):
+        if len(words[i]) >= 5:
+            result += words[i]
+
+    if len(result) == 0:
+        return "empty"
+    return result
+
+print(solution(["my", "favorite", "color", "is", "violet"]))
+print(solution(["yes", "i", "am"]))
+'''
+
+'''5번
+def solution(attack, recovery, hp):
+
+    count = 0
+
+    while hp > 0:
+        count += 1
+        hp -= attack
+
+        if hp <= 0:
+            break
+
+        hp += recovery
+
+    return count
+
+print(solution(30, 10, 60))
+'''
+
+''' 6번
+def solution(floors):
+
+    result = 0
+
+    for i in range(1, len(floors)):
+
+        result += abs(floors[i] - floors[i - 1]) # abs( 숫자 ) 는 숫자의 절대값을 반환해주는 함수이다.
+
+    return result
+
+print(solution([1, 2, 5, 4, 2]))
+'''
+
+'''7번
+def solution(value, unit):
+    if unit == "C":
+        return int((value * 1.8) + 32)
+    if unit == "F":
+        return int((value - 32) / 1.8)
+
+print(solution(527, "C"))
+'''
+
+'''8번
+def solution(number):
+
+    result = 0
+    while number > 0:
+        if number % 10 == 2 or number % 10 == 3 or number % 10 == 5 or number % 10 == 7 :
+            result += 1
+
+        number //= 10
+
+    return result
+
+print(solution(29022531))
+'''
+
+'''9번
+def solution(votes, N, K):
+    count = [0 for i in range(N + 1)]
+
+    for i in range(len(votes)):
+        count[votes[i]] += 1
+
+    result = 0
+    for i in range(1, N + 1):
+        if count[i] == K:
+            result += 1
+            
+    #print(count)
+    return result
+
+print(solution([2, 5, 3, 4, 1, 5, 1, 5, 5, 3], 5, 2))
+        
+'''
+
+'''10번
+def solution(purchase):
+
+    result = 0
+    
+    for i in range(len(purchase)):
+
+        if purchase[i] >= 1000000:
+            result += 50000
+            
+        elif purchase[i] >= 600000:
+            result += 30000
+
+        elif purchase[i] >= 400000:
+            result += 20000
+
+        elif purchase[i] >= 200000:
+            result += 10000
+        
+    return result
+
+print(solution([150000, 210000, 399990, 990000, 1000000]))
+        
+'''
