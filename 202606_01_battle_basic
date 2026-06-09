@@ -1,0 +1,44 @@
+import random
+
+player_hp = 100
+enemy_hp = 100
+
+while player_hp > 0 and enemy_hp > 0:
+    print(f"현재 주인공의 체력 {player_hp} 적의 체력 {enemy_hp}")
+
+    input("엔터를 눌러 주사위를 던지세요")
+
+    randnum = random.randint(1, 44)
+
+    cur = random.randint(1, 10)
+
+    if randnum <= 10:
+        print(f"주인공의 공격 {cur * 2}포인트")
+        enemy_hp -= cur * 3
+        
+    elif randnum <= 20:
+        print(f"적의 공격 {cur * 2}포인트")
+        player_hp -= cur * 3
+        
+    elif randnum <= 30:
+        print(f"주인공의 회복 {cur}포인트")
+        player_hp += cur
+
+    elif randnum <= 40:
+        print(f"적의 회복 {cur}포인트")
+        enemy_hp += cur
+
+    elif randnum <= 42:
+        print(f"주인공의 풀충전")
+        player_hp = 150
+
+    else:
+        print(f"적의 풀충전")
+        enemy_hp = 150
+    print()
+
+if enemy_hp <= 0:
+    print("무찔렀습니다")
+else:
+    print("패배입니다")
+
