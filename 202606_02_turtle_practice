@@ -1,0 +1,173 @@
+'''터틀 예제 10개
+
+# 1
+
+
+import turtle
+
+t = turtle.Turtle()
+t.forward(100)
+
+turtle.done()
+
+
+
+# 2
+
+
+import turtle
+
+t = turtle.Turtle()
+
+for i in range(4):
+    t.forward(100)
+    t.left(90)
+
+turtle.done()
+
+
+
+# 3
+
+
+import turtle
+
+t = turtle.Turtle()
+
+for i in range(3):
+    t.forward(120)
+    t.left(120)
+
+turtle.done()
+
+
+
+# 4
+
+
+import turtle
+
+t = turtle.Turtle()
+
+for i in range(5):
+    t.forward(80)
+    t.left(72)
+
+turtle.done()
+
+
+
+# 5
+
+
+import turtle
+
+t = turtle.Turtle()
+
+for i in range(5):
+    t.forward(150)
+    t.right(144)
+
+turtle.done()
+
+
+
+# 6
+
+
+import turtle
+
+t = turtle.Turtle()
+
+t.color("blue")
+
+t.begin_fill()
+t.circle(50)
+t.end_fill()
+
+turtle.done()
+
+
+
+# 7
+
+
+import turtle
+
+t = turtle.Turtle()
+t.speed(0)
+
+for i in range(12):
+    t.circle(50)
+    t.left(30)
+
+turtle.done()
+
+
+
+# 8
+
+
+import turtle
+
+t = turtle.Turtle()
+t.speed(0)
+
+colors = ["red", "blue", "green", "purple"]
+
+for i in range(20):
+    t.color(colors[i % 4])
+
+    for j in range(4):
+        t.forward(100)
+        t.left(90)
+
+    t.left(18)
+
+turtle.done()
+
+
+
+# 9
+
+
+import turtle
+
+t = turtle.Turtle()
+t.speed(0)
+
+length = 5
+
+for i in range(50):
+    t.forward(length)
+    t.left(90)
+    length += 5
+
+turtle.done()
+
+# 10
+
+
+import turtle
+
+t = turtle.Turtle()
+t.speed(0)
+
+colors = [
+    "red",
+    "orange",
+    "yellow",
+    "green",
+    "blue",
+    "navy",
+    "purple"
+]
+
+for i in range(72):
+    t.color(colors[i % len(colors)])
+    t.circle(100)
+    t.left(5)
+
+turtle.done()
+
+'''
