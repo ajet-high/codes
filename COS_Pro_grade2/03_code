@@ -1,0 +1,247 @@
+''' 1번
+# 다음 두 , func_a 중 하나만 사용해야 함. 단 둘다 읽을 수 있어야 함.
+
+
+def func_a(scores): # 선택정렬
+
+    for i in range(len(scores) - 1):
+        max_idx = i
+        for j in range(i + 1, len(scores)):
+            if scores[j] > scores[max_idx]:
+                max_idx = j
+
+        tmp = scores[i]
+        scores[i] = scores[max_idx]
+        scores[max_idx] = tmp
+
+    return scores
+
+def func_a(scores): # 버블정렬
+
+    for i in range(len(scores), 0, -1):
+        for j in range(i - 1):
+            if scores[j] < scores[j + 1]:
+
+                scores[j], scores[j + 1] = scores[j + 1], scores[j] # 값의 교환에 사용할 수 있는 파이썬 방식
+    
+    return scores
+
+           
+def solution(scores, n):
+    n_score = scores[n]
+    
+    sorted_scores = func_a(scores)
+
+    for i in range(len(sorted_scores)):
+        if sorted_scores[i] == n_score:
+            return i + 1
+
+print(solution([20, 60, 98, 59], 3))
+'''
+
+''' 2번
+def func_a(current_grade):
+    ranking = [1 for i in range(len(current_grade))]
+
+    for i in range(len(current_grade)):
+        for j in range(len(current_grade)):
+            if current_grade[i] < current_grade[j]:
+                ranking[i] += 1
+
+    return ranking
+                
+    
+
+def solution(current_grade, last_grade):
+    ranking = func_a(current_grade)
+
+    max_develop = current_grade[0] - last_grade[0]
+
+    for i in range(len(current_grade)):
+        if current_grade[i] - last_grade[i] > max_develop:
+            max_develop = current_grade[i] - last_grade[i]
+
+    result = 0
+
+    for i in range(len(current_grade)):
+        if ( current_grade[i] >= 80 and ranking[i] <= len(current_grade) / 10 ) or \
+           ( current_grade[i] >= 80 and ranking[i] == 1 ) or \
+           ( current_grade[i] - last_grade[i] == max_develop and current_grade[i] - last_grade[i] > 0 ):
+            result += 1
+
+    return result
+
+print(solution([70, 100, 70, 80, 50, 95], [35, 65, 80, 50, 20, 60]))
+
+'''
+
+
+''' 3번
+def solution(scores):
+
+    scores.sort() # 리스트 이름.sort() 를 써서 값들을 오름차순 정렬할 수 있다. (reverse = True) 를 사용하면 내림차순.
+
+    scores_sum = sum(scores[1:-1]) # 슬라이싱으로 인덱스를 활용해 리스트의 부분을 추출할 수 있다. sum(   ) 을 사용해 여러 값, 리스트의 합을 구할 수 있다.
+
+    result = scores_sum // (len(scores) - 2) # 몫을 취하는 것으로 소수점 제거.
+
+    return result
+
+print(solution([35, 28, 98, 34, 20, 50, 85, 74, 71, 7]))
+print(solution([1, 1, 1, 1, 1]))
+'''
+
+'''4번
+
+def solution(words, word):
+    result = 0
+    
+    for current_word in words:
+        for i in range(len(word)):
+            if current_word[i] != word[i]:
+                result += 1
+
+    return result
+
+print(solution(["CODE", "COED", "CDEO"], "CODE"))
+            
+'''
+
+'''5번
+
+def solution(member_age, transportation):
+
+
+    if transportation == "Bus":
+        fee = [40000, 15000]
+    elif transportation == "Ship":
+        fee = [30000, 13000]
+    elif transportation == "Airplane":
+        fee = [70000, 45000]
+
+    if len(member_age) >= 10:
+        fee[0] = int(fee[0] * 0.9)
+        fee[1] = int(fee[1] * 0.8)
+    
+    result = 0
+    
+    for i in range(len(member_age)):
+        if member_age[i] >= 20:
+            result += fee[0]
+        else:
+            result += fee[1]
+
+    return result
+
+print(solution([13, 33, 45, 11, 20], "Bus"))
+print(solution([25, 11, 27, 56, 7, 19, 52, 31, 77, 8], "Ship"))
+
+'''
+
+''' 6번
+def solution(tile_length):
+    result = ''
+
+    cnt = tile_length // 6
+
+    result += cnt * "RRRGGB"
+
+    tile_length = tile_length % 6
+
+    if tile_length == 3:
+        result += "RRR"
+    elif tile_length == 5:
+        result += "RRRGG"
+    elif tile_length == 0:
+        pass
+    else:
+        return -1
+
+    return result
+
+print(solution(11))
+print(solution(16))
+        
+'''
+
+'''7번
+
+def solution(num_apple, num_carrot, k):
+
+    result = 0
+
+    if num_apple >= num_carrot * 3:
+        result = num_carrot
+    else:
+        result = num_apple // 3
+
+    num_apple -= result * 3
+    num_carrot -= result
+
+    i = 0
+    while k > num_apple + num_carrot + i:
+
+        if i % 4 == 0:
+            result -= 1
+        i += 1
+
+    return result
+
+print(solution(5, 1, 2))
+print(solution(10, 5, 4))
+'''
+
+'''8번
+def solution(programs):
+    tv_time = [0 for i in range(25)]
+
+    for p in programs:
+        for t in range(p[0], p[1]):
+            tv_time[t] += 1
+
+    result = 0
+    
+    for i in range(25):
+        if tv_time[i] >= 2:
+            result += 1
+
+    return result
+
+print(solution([[1, 6], [3, 5], [2, 8]]))
+'''
+
+
+'''9번
+def solution(day, numbers):
+
+    result = 0
+
+    for i in range(len(numbers)):
+        if day % 2 == numbers[i] % 2:
+            result += 1
+
+    return result
+
+print(solution(17, [3285, 1724, 4438, 2988, 3131, 2998]))
+'''
+
+'''10번
+def solution(arr):
+    result = 0
+    
+    for i in range(len(arr)):
+        cur_num = arr[i]
+        is_exist = False
+
+        for j in range(len(arr)):
+            if cur_num / 2 == arr[j]:
+                is_exist = True
+                break
+
+        if is_exist:
+            result += 1
+
+    return result
+
+print(solution([4, 8, 3, 6, 7]))
+'''
