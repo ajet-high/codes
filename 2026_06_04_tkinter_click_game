@@ -1,0 +1,55 @@
+'''
+total gold
+
+capacity       버튼
+
+    + 10       + 100      +1000
+   (100G)      (1000G)    (10000G)
+
+
+'''
+
+
+import tkinter as tk
+
+gold = 0
+capacity = 1
+
+def plus():
+    global gold
+    gold += capacity
+    lb_total_gold.config(text = "total gold :" + str(gold))
+
+def up_10(value):
+    global capacity, gold
+   
+    if gold >= value * 10:
+        gold -= value * 10
+        capacity += value
+        lb_capacity.config(text = "capacity :" + str(capacity))
+
+
+root = tk.Tk()
+root.geometry("300x200")
+root.title("파이썬 클릭게임")
+
+lb_total_gold = tk.Label(root, text = 'total gold : 0')
+lb_total_gold.place(x = 50, y = 0)
+
+lb_capacity = tk.Label(root, text = 'capacity = 1')
+lb_capacity.place(x = 0, y = 50)
+
+bt_main = tk.Button(root, text = 'up', command = plus)
+bt_main.place(x = 100, y = 50)
+
+bt_10 = tk.Button(root, text = '+ 10\n(100G)', command = lambda:up_10(10))
+bt_10.place(x = 50, y = 100)
+
+bt_100 = tk.Button(root, text = '+ 100\n(1000G)', command = lambda:up_10(100))
+bt_100.place(x = 100, y = 100)
+
+bt_1000 = tk.Button(root, text = '+ 1000\n(10000G)', command = lambda:up_10(1000))
+bt_1000.place(x = 150, y = 100)
+
+
+root.mainloop()
