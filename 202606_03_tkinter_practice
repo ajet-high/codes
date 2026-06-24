@@ -1,0 +1,124 @@
+# 1. Label
+import tkinter as tk
+
+root = tk.Tk()
+
+tk.Label(root, text="안녕하세요").pack()
+
+root.mainloop()
+
+
+# 2. Button
+import tkinter as tk
+
+def hello():
+    print("버튼 클릭")
+
+root = tk.Tk()
+
+tk.Button(root, text="클릭", command=hello).pack()
+
+root.mainloop()
+
+
+# 3. Entry
+import tkinter as tk
+
+def show():
+    print(entry.get())
+
+root = tk.Tk()
+
+entry = tk.Entry(root)
+entry.pack()
+
+tk.Button(root, text="확인", command=show).pack()
+
+root.mainloop()
+
+
+# 4. Text
+import tkinter as tk
+
+root = tk.Tk()
+
+text = tk.Text(root, width=20, height=5)
+text.pack()
+
+root.mainloop()
+
+
+# 5. pack
+import tkinter as tk
+
+root = tk.Tk()
+
+tk.Button(root, text="위").pack()
+tk.Button(root, text="아래").pack()
+
+root.mainloop()
+
+
+# 6. grid
+import tkinter as tk
+
+root = tk.Tk()
+
+tk.Button(root, text="1").grid(row=0, column=0)
+tk.Button(root, text="2").grid(row=0, column=1)
+tk.Button(root, text="3").grid(row=1, column=0)
+
+root.mainloop()
+
+
+# 7. place
+import tkinter as tk
+
+root = tk.Tk()
+root.geometry("300x200")
+
+tk.Button(root, text="버튼").place(x=100, y=50)
+
+root.mainloop()
+
+
+# 8. config
+import tkinter as tk
+
+def change():
+    label.config(text="변경 완료")
+
+root = tk.Tk()
+
+label = tk.Label(root, text="원래 글자")
+label.pack()
+
+tk.Button(root, text="변경", command=change).pack()
+
+root.mainloop()
+
+
+# 9. after
+import tkinter as tk
+
+def message():
+    label.config(text="3초 지남")
+
+root = tk.Tk()
+
+label = tk.Label(root, text="대기 중")
+label.pack()
+
+root.after(3000, message)
+
+root.mainloop()
+
+
+# 10. destroy
+import tkinter as tk
+
+root = tk.Tk()
+
+tk.Button(root, text="닫기", command=root.destroy).pack()
+
+root.mainloop()
