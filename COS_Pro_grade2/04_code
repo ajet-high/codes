@@ -1,0 +1,248 @@
+'''1 번
+
+def solution(schedule):
+    result = []
+
+    for i in range(len(schedule)):
+        if schedule[i] == 'X':
+            result.append(i + 1)
+
+    return result
+
+print(solution(["O", "X", "X", "O", "O", "O", "X", "O", "X", "X"]))
+
+# 위의 리스트는 list("OXXOOOXOXX") 로도 만들 수 있다. 문자열을 리스트화하면, 순서대로 하나씩 담아준다.
+
+'''
+
+'''2번
+
+def solution(scores):
+    result = 0
+
+    cut_line = [80, 88, 70]
+
+    for score in scores:
+        pass_bool = True # 이 변수의 자료형은 bool 형이다. True, False 를 담을 수 있다.
+        cnt = 0
+        
+        for i in range(len(score)):
+            if score[i] <= ( cut_line[i] / 2 ):
+                pass_bool = False
+                break
+            if score[i] >= cut_line[i]:
+                cnt += 1
+
+        if cnt <= 1:
+            pass_bool = False
+
+        if pass_bool:
+            result += 1
+
+    return result
+
+print(solution([[30, 40, 100], [97, 88, 95]]))
+print(solution([[90, 88, 70], [85, 90, 90], [100, 100, 70], [30, 90, 80], [40, 10, 20], [83, 88, 80]]))
+            
+'''
+
+''' 3번   @ 채워넣기.
+
+def func_a(bundle, start):
+    return bundle[start::2]
+
+def func_b(score1, score2):
+    if score1 > score2:
+        return [1, score1]
+    elif score2 > score1:
+        return [2, score2]
+    else:
+        return [0, score1]
+
+def func_c(bundle):
+    answer = 0
+    score_per_cards = {
+        'a': 1,
+        'b': 2,
+        'c': 3,
+        'd': 4,
+        'e': 5
+    }
+    for card in bundle:
+        answer += score_per_cards[card]
+    return answer
+        
+def solution(n, bundle):
+    a_cards = func_a(@@@, @@@)[:n]
+    b_cards = func_a(@@@, @@@)[:n]
+    a_score = func_c(@@@)
+    b_score = func_c(@@@)
+    return func_b(@@@, @@@)
+
+#아래는 테스트케이스 출력을 해보기 위한 코드입니다.
+n = 4
+bundle = "cacdbdedccbb"
+ret = solution(n, bundle)
+
+#[실행] 버튼을 누르면 출력 값을 볼 수 있습니다.
+print("solution 함수의 반환 값은", ret, "입니다.")
+'''
+
+'''4번 첫번째 방법
+def solution(classes, m):
+    result = 0
+    for c in classes:
+        cur = c // m
+        c %= m
+        if c > 0:
+            cur += 1
+
+        result += cur
+
+    return result
+
+print(solution([80, 45, 33, 20], 30))
+'''
+
+''' 4번 두번째 방법
+def solution(classes, m):
+    result = 0
+
+    for i in range(len(classes)):
+        result += (classes[i] + (m - 1)) // m
+
+    return result
+
+print(solution([80, 45, 33, 20], 30))
+
+'''
+
+
+'''5번
+def solution(calorie):
+    min_calorie = calorie[0]
+    result = 0
+
+    for cal in calorie:
+        if cal < min_calorie:
+            min_calorie = cal
+
+        if cal > min_calorie:
+            result += cal - min_calorie
+
+    return result
+
+print(solution([713, 665, 873, 500, 751]))
+
+'''
+
+''' 6번
+
+def solution(point):
+    result = (point // 100) * 100
+    if result >= 1000:
+        return result
+    return 0
+
+print(solution(2323))
+'''
+
+'''7번
+def solution(mid_scores, final_scores):
+    max_sub = -200
+    min_sub = 200
+
+    for i in range(len(mid_scores)):
+        cur = final_scores[i] - mid_scores[i]
+        if cur > max_sub:
+            max_sub = cur
+        if cur < min_sub:
+            min_sub = cur
+
+    return [max_sub, min_sub]
+
+print(solution([20, 50, 40], [10, 50, 70]))
+'''
+
+'''8번
+def solution(n, votes):
+    counts = [0 for i in range(n + 1)]
+
+    for i in range(len(votes)):
+        counts[votes[i]] += 1
+
+    for i in range(1, n + 1):
+        if counts[i] > len(votes) // 2:
+            return i
+    return -1
+
+print(solution(3, [1, 2, 1, 3, 1, 2, 1]))
+print(solution(2, [2, 1, 2, 1, 2, 2, 1]))
+'''
+
+
+''' 9번 첫번째 예시. 9번은 다양하게 풀 수 있다. 취향대로 연습하자.
+def solution(height):
+    result = 0
+
+    for i in range(len(height)):
+        for j in range(len(height[0])):
+            danger = True
+
+            if (i + 1 < len(height))    and ( height[i][j] >= height[i + 1][j] ) or \
+               (i - 1 >= 0)             and ( height[i][j] >= height[i - 1][j] ) or \
+               (j + 1 < len(height[0])) and ( height[i][j] >= height[i][j + 1] ) or \
+               (j - 1 >= 0)             and ( height[i][j] >= height[i][j - 1] ) :
+                danger = False
+
+            if danger:
+                result += 1
+
+    return result
+
+print(solution([[3, 6, 2, 8], [7, 3, 4, 2], [8, 6, 7, 3], [5, 3, 2, 9]]))
+               
+'''
+
+''' 9번 두번째 예시
+
+def solution(height):
+    areas = [[99 for j in range(len(height[0]) + 2)] for i in range(len(height) + 2)]
+
+    for i in range(1, len(height) + 1):
+        for j in range(1, len(height[0]) + 1):
+            areas[i][j] = height[i - 1][j - 1]
+                       
+    result = 0
+
+    for i in range(1, len(height) + 1):
+        for j in range(1, len(height[0]) + 1):
+            danger = True
+            if areas[i][j] >= areas[i + 1][j] or\
+               areas[i][j] >= areas[i - 1][j] or\
+               areas[i][j] >= areas[i][j + 1] or\
+               areas[i][j] >= areas[i][j - 1] :
+                danger = False
+               
+            if danger:
+                result += 1
+
+    return result
+
+print(solution([[3, 6, 2, 8], [7, 3, 4, 2], [8, 6, 7, 3], [5, 3, 2, 9]]))
+
+'''
+
+'''10번은 그냥 점수 주는 문제...
+
+def solution(scores, cutline):
+    result = 0
+
+    for s in scores:
+        if s >= cutline:
+            result += 1
+
+    return result
+
+print(solution([80, 90, 55, 60, 59], 60))
+'''
