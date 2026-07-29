@@ -109,7 +109,7 @@ def solution(classes, m):
     result = 0
 
     for i in range(len(classes)):
-        result += (classes[i] + (m - 1)) // m
+        result += (classes[i] + (m - 1)) // m   # 필요한 조교의 인원을 구하기 위해 학생 숫자를 m 으로 나눈 몫을 구하면 되는데, 갯수가 m 이하일 때에도 1로 조정해주기 위해 m - 1을 더해준다.
 
     return result
 
