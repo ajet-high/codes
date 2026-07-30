@@ -1,0 +1,211 @@
+'''
+1번 설명.
+
+처음엔
+1, 2, 3, 4, 5, 6 이 들어있다.
+
+사다리가 없다면 그대로 전진하게 되어 원래 번호대로 도착하게 된다.
+
+만약 사다리가 [1, 2] 가 들어있다면
+둘의 위치가 바뀌어
+2, 1, 3, 4, 5, 6 으로 된다.
+
+
+사다리가 [1, 2], [5, 6]이 들어있다면
+2, 1, 3, 4, 6, 5 가 된다.
+
+[1, 2], [3, 4], [2, 3] 이 들어있다면
+
+├┤││││
+││├┤││
+│├┤│││
+││││││
+││││││
+
+2, 1, 3, 4, 5, 6
+2, 1, 4, 3, 5, 6
+2, 4, 1, 3, 5, 6
+
+즉, 최초 입력 리스트에 들어있는 순서대로
+해당 인덱스(-1) 에 들어있는 숫자를 서로 바꾸어준다.
+
+win(-1) 번째 있는 숫자가 마지막에 승리한 번호이다.
+
+
+
+def solution(ladders, win):
+    
+    player = [1, 2, 3, 4, 5, 6] # 어떤 번호가 어느 위치에 있는지를 나타내는 리스트
+    for e in ladders:
+        temp = player[e[0]-1]
+        player[e[0] - 1] = player[e[1] - 1]
+        player[e[1] - 1] = temp
+    return player[win-1]
+
+print(solution([[1, 2], [3, 4], [2, 3], [4, 5], [5, 6]], 3))
+
+
+# 2번
+# enumerate 은 list 의 인덱스와 값을 짝지어줄때 쓴다.
+# reversed 는 list 를 뒤집을 때 사용.
+
+def func_a(time_table):
+    answer = 0
+    for i, t in reversed(list(enumerate(time_table))):
+        if t == 1:
+            answer = i
+            break
+    return answer
+
+def func_b(time_table, class1, class2):
+    answer = 0
+    for i in range(class1, class2):
+        if time_table[i] == 0:
+            answer += 1
+    return answer
+
+def func_c(time_table):
+    answer = 0
+    for i, t in enumerate(time_table):
+        if t == 1:
+            answer = i
+            break
+    return answer
+
+def solution(time_table):
+    answer = 0
+    first_class = func_@@@(@@@)
+    last_class = func_@@@(@@@)
+    answer = func_@@@(@@@)
+    return answer
+
+time_table = 
+print(solution([1, 1, 0, 0, 1, 0, 1, 0, 0, 0]))
+
+
+# 3번
+
+def solution(speed, cars):
+    answer = 0
+    for i in range(len(cars)):
+        if speed * 11 // 10 <= cars[i] < speed * 12 // 10: answer += 3
+        elif speed * 12 // 10 <= cars[i] < speed * 13 // 10: answer += 5
+        elif speed * 13 // 10 <= cars[i]: answer += 7
+
+    return answer
+
+print(solution(100, [110, 98, 125, 148, 120, 112, 89]))
+
+
+
+# 4번
+
+def solution(taekwondo, running, shooting):
+    answer = 0
+    if taekwondo >= 25:
+    	answer += @@@
+    else:
+    	answer += taekwondo * 8
+    answer += 250 + (60 - running) * 5 # 또는 550 - (running * 5) 로 쓸 수도 있다
+    count = 0
+    for s in shooting:
+    	answer += s
+    	if s == 10:
+    		count += 1
+    if count >= 7:
+    	answer += @@@
+    return answer
+
+print(solution(27, 63, [9, 10, 8, 10, 10, 10, 7, 10, 10, 10]))
+
+
+
+# 5번 최소공배수 구하기
+
+def solution(a, b):
+    answer = 0
+    for i in range(1, b + 1):
+        if (a * i) % b == 0:
+            answer = a * i
+            break
+    return answer
+
+print(solution(4, 6))
+
+
+# 6번
+
+def solution(korean, english):
+    answer = 0
+    math = 210 - korean - english # 이 코드에서 math 는 받은 점수가 아니라 210 점을 맞기 위해 필요한 점수
+    # 평균 70이 되려면 총점 210이 되어야 하는데 210에서 국어와 영어를 빼면 나머지는 (필요한 수학점수)이다.
+    if math > 100:
+        answer = -1
+    else:
+        answer = math
+    return answer
+
+print(solution(70, 60))
+
+
+# 7번
+
+def solution(stuffs):
+
+    small = 0
+    big = 0
+
+    for s in stuffs:
+        if s <= 3:
+            small += s
+        else:
+            big += s
+
+    return max(small, big)
+
+print(solution([5, 3, 4, 2, 3, 2]))
+
+
+# 8번
+
+def solution(usage):
+    if usage <= 20: # 20이하이면
+        return 430 * usage # 제일 낮은 등급
+    if usage <= 30: # 30이하이면
+        return 8600 + 570 * (usage - 20) # 20까지 모두 내고, 나머지 만큼은 두번째 등급 
+    return 14300 + 840 * (usage - 30) # 30 초과이면 아랫등급 모두 내고, 나머지는 840원씩 
+
+print(solution(35))
+
+
+# 9번 
+
+def solution(score):
+    rank = [1 for i in range(len(score))] # 랭킹(석차)(순위) 는 나보다 높은 사람이 없을 때 1등으로 초기화.
+
+    for i in range(len(score)): # i 번째 사람의 점수를
+        for j in range(len(score)): # 다른 사람들과 비교해서 
+            if score[i] < score[j]: # 더 높은 사람이 있다면 
+                rank[i] += 1 # 내 등수를 1씩 증가시킨다.
+
+    return rank
+
+print(solution([90, 87, 87, 23, 35, 28, 12, 46]))
+print(solution([10, 20, 20, 30]))
+
+                
+
+
+# 10번
+def solution(time_table, n):
+    labors = [0 for i in range(n)]
+
+    for i in range(len(time_table)):
+        labors[i % n] += time_table[i] # i 를 n 으로 나눈 나머지는 0, 1, 2, ... n - 2, n - 1, 0, 1, 2, ... n - 2, n - 1, 0, ...이렇게 인덱스롤 사용할 수 있게 된다.
+        # n 이 3 이라면 인덱스는 0, 1, 2, 0, 1, 2 ,,,
+
+    return max(labors)
+
+print(solution([1, 5, 1, 9], 3))
+print(solution([4, 8, 2, 5, 4, 6, 7], 4))
+'''
