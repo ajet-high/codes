@@ -109,7 +109,7 @@ def solution(classes, m):
     result = 0
 
     for i in range(len(classes)):
-        result += (classes[i] + (m - 1)) // m   # 필요한 조교의 인원을 구하기 위해 학생 숫자를 m 으로 나눈 몫을 구하면 되는데, 갯수가 m 이하일 때에도 1로 조정해주기 위해 m - 1을 더해준다.
+        result += (classes[i] + (m - 1)) // m   # 필요한 조교의 인원을 구하기 위해 학생 숫자를 m 으로 나눈 몫을 구하면 되는데, 갯수가 m 이하일 때에도 한명은 필요하기 때문에 1로 조정해주기 위해 m - 1을 더하고 m 으로 나눈 몫을 구한다.
 
     return result
 
@@ -181,22 +181,22 @@ print(solution(2, [2, 1, 2, 1, 2, 2, 1]))
 '''
 
 
-''' 9번 첫번째 예시. 9번은 다양하게 풀 수 있다. 취향대로 연습하자.
+''' 9번 첫번째 예시. 9번은 다양하게 풀 수 있다. 취향대로 연습하자.      # 민준아, 4번에 주석 달아놨다. 
 def solution(height):
     result = 0
 
-    for i in range(len(height)):
-        for j in range(len(height[0])):
-            danger = True
+    for i in range(len(height)): # 지도상의 행(줄)을 가리키는 인덱스.
+        for j in range(len(height[0])): # 열(칸)을 가리키는 인덱스
+            danger = True # 일단 위험할 것이라고 정해둔다.
 
-            if (i + 1 < len(height))    and ( height[i][j] >= height[i + 1][j] ) or \
-               (i - 1 >= 0)             and ( height[i][j] >= height[i - 1][j] ) or \
-               (j + 1 < len(height[0])) and ( height[i][j] >= height[i][j + 1] ) or \
-               (j - 1 >= 0)             and ( height[i][j] >= height[i][j - 1] ) :
-                danger = False
+            if (i + 1 < len(height))    and ( height[i][j] >= height[i + 1][j] ) or \ # i + 1로 다음줄을 보려고 하는데, 인덱스가 줄 수보다 넘으면 안된다. 현재위치 [i][j] 보다 다음줄 위치 [i + 1][j] 의 숫자가 같거나 작으면 위험하지 않다.
+               (i - 1 >= 0)             and ( height[i][j] >= height[i - 1][j] ) or \ # 윗줄
+               (j + 1 < len(height[0])) and ( height[i][j] >= height[i][j + 1] ) or \ # 오른쪽칸
+               (j - 1 >= 0)             and ( height[i][j] >= height[i][j - 1] ) : # 왼쪽칸
+                danger = False  # 넷 중 하나라도 현재 위치보다 같거나 작으면, 현재 위치는 위험하지 않다. False = 거짓
 
-            if danger:
-                result += 1
+            if danger: # 만약 다 들여다봤는데 위험한 상태라면
+                result += 1 # 위험지역의 수를 증가해둔다.
 
     return result
 
@@ -207,7 +207,7 @@ print(solution([[3, 6, 2, 8], [7, 3, 4, 2], [8, 6, 7, 3], [5, 3, 2, 9]]))
 ''' 9번 두번째 예시
 
 def solution(height):
-    areas = [[99 for j in range(len(height[0]) + 2)] for i in range(len(height) + 2)]
+    areas = [[99 for j in range(len(height[0]) + 2)] for i in range(len(height) + 2)] # 가장 바깥자리를 99로 위험지역으로 둘러둬서, 아래에서 체크를 좀 더 쉽게할 수 있다.
 
     for i in range(1, len(height) + 1):
         for j in range(1, len(height[0]) + 1):
@@ -218,7 +218,7 @@ def solution(height):
     for i in range(1, len(height) + 1):
         for j in range(1, len(height[0]) + 1):
             danger = True
-            if areas[i][j] >= areas[i + 1][j] or\
+            if areas[i][j] >= areas[i + 1][j] or\ # 이 부분에서 비교할 칸이 리스트의 범위 내에 있는지 확인 안 해도 된다.
                areas[i][j] >= areas[i - 1][j] or\
                areas[i][j] >= areas[i][j + 1] or\
                areas[i][j] >= areas[i][j - 1] :
