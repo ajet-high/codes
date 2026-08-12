@@ -5,6 +5,10 @@
 
  ![ladders.jpg](https://grepp-programmers.s3.amazonaws.com/files/ybm/4179093d4d/d2f78792-2661-41bd-9973-f072153ee229.jpg)
 
+# 그림파일들은 https: 부터 .jpg 까지 복사해서 인터넷 창에 붙여넣으면 볼 수 있고, 
+# 지금 github 의 COS_Pro_grade2 폴더에도 넣어놨으니, 클릭하면 보임.
+
+
 가로줄의 위치가 담긴 2차원 리스트 ladders와 상품의 위치 win이 매개변수로 주어질 때, 당첨자의 시작 위치를 return 하도록 solution 함수를 작성하려 합니다. 빈칸을 채워 전체 코드를 완성해주세요.
 
 ---
