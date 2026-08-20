@@ -1,0 +1,271 @@
+'''
+# 1번
+
+def solution(temperature, a, b):
+    result = 0
+    for i in range(a + 1, b):
+        if temperature[i] > temperature[a] and temperature[i] > temperature[b]:
+            result += 1
+    return result
+
+print(solution([3, 2, 1, 5, 4, 3, 3, 2], 1, 6))
+        
+
+
+
+# 2번
+
+def solution(papers, papers_len, k):
+    result = 0
+
+    for i in range(papers_len):
+        k -= papers[i]
+        if k < 0: # 이번 사람한테 주는 것에 실패한 것.
+            return i # return 하는 순간 함수는 즉각 종료된다. i는 이번 사람의 차례 -1 이므로 i 개를 주면 이전 사람(종이를 받은 사람)까지의 숫자와 같다.
+
+    return papers_len # 모두 나눠줬는데도 종료되지 않았다면 모두에게 나눠준 것.
+
+
+
+print(solution([2, 4, 3, 2, 1], 5, 10))
+print(solution([2, 4, 3, 2, 1], 5, 14))
+
+
+# 3번
+
+def solution(people):
+    sizes = [0, 0, 0, 0]
+
+    for i in range(len(people)):
+        if people[i] < 95:
+            sizes[0] += 1
+        elif people[i] < 100:
+            sizes[1] += 1
+        elif people[i] < 105:
+            sizes[2] += 1
+        else:
+            sizes[3] += 1
+
+    return sizes
+
+print(solution([97, 102, 93, 100, 107]))
+
+
+
+# 4번
+
+def solution(cards):
+    result = int(cards[0][1]) + int(cards[1][1]) + int(cards[2][1])
+
+    if cards[0][0] == cards[1][0] and cards[1][0] == cards[2][0]: # 색깔이 모두 같다
+        result *= 3
+    elif cards[0][0] == cards[1][0] or cards[1][0] == cards[2][0] or cards[0][0] == cards[2][0]: # 그렇지 않은 경우, 2장이 같은 경우가 있다
+        result *= 2
+    # 모두 같거나, 2장이 같은 경우를 제외하면 모두 다른 경우이므로 총합 그대로 사용.
+    return result
+
+print(solution([["blue", "2"], ["red", "5"], ["black", "3"]]))
+print(solution([["blue", "2"], ["blue", "5"], ["black", "3"]]))
+
+
+
+# 5번
+
+def solution(money, price, n):
+
+    result = money // price # 처음에 산 음료수
+    empty = money // price # 그 갯수만큼 빈병이 생긴다.
+
+    while empty >= n: # 빈병이 n 개 이상이 된다면
+        result += 1
+        empty -= n # n 개 교환하면서 빈병은 사라짐
+        empty += 1 # 대신 빈병 1개 증가
+
+    return result
+
+print(solution(8, 2, 4))
+print(solution(6, 2, 2))
+        
+
+
+# 6번 - 세 가지 방법으로 풀 수 있다.
+
+# 첫번째 방법 (추천) : 대문자의 ascii 코드는 65 ~ 90 소문자는 97 ~ 122 숫자는 48 ~ 57 이라는 정보를 이용. 
+
+def solution(password):
+    big = 0
+    small = 0
+    digit = 0
+    
+    for p in password:
+        if 65 <= ord(p) <= 90: big += 1 # ord( ) 속에 문자를 넣으면 ascii 값(숫자)를 반환(return)
+        elif 97 <= ord(p) <= 122: small += 1
+        elif 48 <= ord(p) <= 57: digit += 1
+
+
+    if big >= 1 and small >= 2 and digit >= 2: return True
+    return False
+
+# 두번째 방법 : 문자열의 대소 비교를 이용.
+
+def solution(password):
+    big = 0
+    small = 0
+    digit = 0
+    
+    for p in password:
+        if 'A' <= p <= 'Z': big += 1 # ord( ) 속에 문자를 넣으면 ascii 값(숫자)를 반환(return)
+        elif 'a' <= p <= 'z': small += 1
+        elif '0' <= p <= '9': digit += 1
+
+
+    if big >= 1 and small >= 2 and digit >= 2: return True
+    return False
+
+
+# 세번째 방법 : 대소문자, 숫자 판별 내장함수 사용
+
+def solution(password):
+    big = 0
+    small = 0
+    digit = 0
+    
+    for p in password:
+        if p.isupper(): big += 1 # ord( ) 속에 문자를 넣으면 ascii 값(숫자)를 반환(return)
+        elif p.islower(): small += 1
+        elif p.isdigit(): digit += 1
+
+
+    if big >= 1 and small >= 2 and digit >= 2: return True
+    return False
+
+
+print(solution("helloworld"))
+print(solution("Hello123"))
+
+
+
+# 7번
+
+def solution(money, chairs, desks):
+    result = 0
+    
+    for c in chairs:
+        for d in desks:
+            if c + d <= money and c + d > result:
+                result = c + d
+
+    return result
+
+print(solution(7, [2, 5], [4, 3, 5]))
+print(solution(7, [3], [5]))
+
+
+
+# 8번 @@@ 채우기 - 이해가 잘 안 갈 경우, 아래 쪽에 def get_digits 와 def reverse_num 을 먼저 읽고 이해할 것.
+
+def func_a(number1, number2):
+    ret = 0
+    if number1 > number2:
+        ret = number1 - number2
+    else:
+        ret = number2 - number1
+    return ret
+
+def func_b(number):
+    ret = 0
+    while number != 0:
+        number = number // 10
+        ret += 1
+    return ret
+
+def func_c(number, digit):
+    ret = 0
+    for i in range(digit):
+        temp = number % 10
+        number = number // 10
+        ret = ret * 10 + temp
+    return ret
+
+def solution(number):
+    answer = 0
+    digit = func_@@@(@@@)
+    convert_number = func_@@@(@@@)
+    answer = func_@@@(@@@)
+    return answer
+
+
+
+#아래는 테스트케이스 출력을 해보기 위한 코드입니다.
+number1 = 120
+ret1 = solution(number1)
+
+#[실행] 버튼을 누르면 출력 값을 볼 수 있습니다.
+print("solution 함수의 반환 값은", ret1, "입니다.")
+
+number2 = 23
+ret2 = solution(number2)
+
+#[실행] 버튼을 누르면 출력 값을 볼 수 있습니다.
+print("solution 함수의 반환 깂은", ret2, "입니다.")
+
+
+# 8번 연습용
+
+def get_digits(num): # 자릿수 구하기
+    result = 0
+    while num > 0:
+        num //= 10
+        result += 1
+    return result
+
+def reverse_num(num): # 숫자 뒤집기. 단, 마지막에 붙어 있는 0들은 제거됨. 
+    result = 0
+    while num > 0:
+        result = result * 10 + num % 10 # 원래 있던 숫자들은 자릿수를 올림.
+        num //= 10
+    return result
+
+print(get_digits(9887))
+print(get_digits(7000))
+
+print(reverse_num(9887)) # 7889
+print(reverse_num(7000)) # 7
+print(reverse_num(7005)) # 5007
+
+
+
+# 9번
+
+def solution(socks):
+    counts = [0 for i in range(10)]
+
+    for s in socks:
+        counts[s] += 1 # 양말 번호별로 몇 개 있는지 모두 더해둔다.
+
+    result = 0
+    for i in range(10):
+        result += counts[i] // 2
+
+    return result
+
+print(solution([1, 2, 1, 3, 2, 1]))
+
+
+
+
+
+# 10번
+
+def solution(weight, boxes):
+    result = 0
+
+    for i in range(len(boxes)):
+        if boxes[i] > weight * 11 // 10 or \
+           boxes[i] < weight * 9 // 10:
+            result += 1
+
+    return result
+
+print(solution(600, [653, 670, 533, 540, 660]))
+'''
