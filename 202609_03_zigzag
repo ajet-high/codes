@@ -1,0 +1,69 @@
+''' 코드업 1503 연습용 모든 방법을 다 사용할 수 있도록 연습할 것.
+
+# 1 각 행의 제일 첫번째 숫자를 계산해서 첫줄은 더하고 둘째줄은 빼면서 진행
+n = int(input())
+
+for i in range(1, n + 1):
+    if i % 2 == 1:
+        for j in range(n * i - (n - 1), n * i + 1):
+            print(j, end = ' ')
+    else:
+        for j in range(n * i, n * (i - 1), -1):
+            print(j, end = ' ')
+    print()
+
+
+# 2 첫행은 열 증가, 둘째행은 열감소를 반복
+
+n = int(input())
+
+arr = [[0 for j in range(n)] for i in range(n)]
+cnt = 0
+
+for i in range(n):
+    if i % 2 == 0:
+        for j in range(n):
+            cnt += 1
+            arr[i][j] = cnt
+    else:
+        for j in range(n):
+            cnt += 1
+            arr[i][n - 1 - j] = cnt
+
+for i in range(n):
+    for j in range(n):
+        print(arr[i][j], end = ' ')
+    print()
+
+        
+# 3 부딪칠 때까지 전진, 부딪치면 아래줄로 내려가 방향 전환.
+
+n = int(input())
+arr = [[0 for j in range(n)] for i in range(n)]
+
+cur_x = 0
+cur_y = 0
+cnt = 1
+dx = [0, 0]
+dy = [1, -1]
+direct = 0
+
+while cnt <= n * n:
+    arr[cur_x][cur_y] = cnt
+    nxt_x = cur_x + dx[direct]
+    nxt_y = cur_y + dy[direct]
+
+    if not(0 <= nxt_y < n): # 범위를 벗어나게 된다면
+        cur_x += 1 # 아랫줄로
+        direct += 1 # 방향 전환
+        direct %= 2
+    else: # 아니면
+        cur_x = nxt_x # 그대로 전진 
+        cur_y = nxt_y        
+    cnt += 1
+
+for i in range(n):
+    for j in range(n):
+        print(arr[i][j], end = ' ')
+    print()
+'''
