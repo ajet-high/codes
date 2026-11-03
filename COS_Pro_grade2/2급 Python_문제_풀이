@@ -170,7 +170,7 @@ def solution(arr, n):
 
 print(solution([1, 2, 3, 4, 4, 5, 6, 7, 7, 8, 9, 9, 9, 9, 10], 15))
 print(solution([1, 1, 4, 4, 8, 8, 8, 8, 9, 9, 9, 9, 1, 4, 4, 4, 5, 3, 2, 2, 1, 4, 8, 7], 24))
-print(solution([3, 3, 3, 3, 3, 5, 5, 5, 5, 5, 9, 9, 9, 9, 9, 11, 11, 11, 11, 11], 20))
+print(solution([3, 3, 3, 3, 3, 5, 5, 5, 5, 5, 9, 9, 9, 9, 9, 11, 11, 11, 11, 11], 20))      
 
 
 # 7번
@@ -196,6 +196,133 @@ def solution(arr, n):
 
 print(solution([[15, 20], [36, 48], [12, 7], [121, 44], [39, 65]], 5))
 print(solution([[356, 78], [154, 122], [38, 190], [44, 188], [365, 245]], 5))
+
+
+# 8번
+
+def solution(arr):
+    
+    for i in range(10):
+        for j in range(10):
+            if arr[i][j] == 1: # 영역의 시작
+                length = 0
+                for k in range(2, 10):
+                    is_square = True
+                    for n in range(i, i + k):
+                        for m in range(j, j + k):
+                            if n > len(arr) - 1 or m > len(arr) - 1:
+                                is_square = False
+                                break
+                            if arr[n][m] == 0:
+                                is_square = False
+                                break
+                        if not is_square:
+                            break
+                    if is_square:
+                        length = k
+                for n in range(i, i + length):
+                    for m in range(j, j + length):
+                        arr[n][m] = 0
+
+    for i in range(len(arr)):
+        for j in range(len(arr)):
+            #print(arr[i][j], end = ' ')
+            if arr[i][j] == 1:
+                return 0
+        #print()
+    return 1
+
+
+print(solution([[0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 
+[0, 0, 0, 0, 0, 0, 1, 1, 1, 1], 
+[0, 0, 1, 1, 1, 0, 1, 1, 1, 1], 
+[0, 0, 1, 1, 1, 0, 1, 1, 1, 1], 
+[0, 0, 1, 1, 1, 0, 1, 1, 1, 1], 
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 
+[0, 0, 0, 1, 1, 1, 1, 0, 0, 0], 
+[0, 0, 0, 1, 1, 1, 1, 0, 0, 0], 
+[0, 0, 0, 1, 1, 1, 1, 0, 0, 0]] ))
+
+print(solution([[0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 
+[0, 0, 0, 0, 0, 0, 0, 1, 1, 1], 
+[0, 1, 1, 1, 1, 1, 0, 1, 1, 1], 
+[0, 1, 1, 1, 1, 1, 0, 1, 1, 1], 
+[0, 1, 1, 1, 1, 1, 0, 1, 1, 1], 
+[0, 1, 1, 1, 1, 1, 0, 1, 1, 1], 
+[0, 1, 1, 1, 1, 1, 0, 1, 1, 1], 
+[0, 1, 1, 1, 1, 0, 0, 0, 0, 0], 
+[0, 1, 1, 1, 1, 0, 0, 0, 0, 0], 
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0]] ))
+
+print(solution([[0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 
+[0, 0, 0, 0, 0, 0, 0, 1, 1, 1], 
+[0, 1, 1, 1, 1, 1, 0, 1, 1, 1], 
+[0, 1, 1, 1, 1, 1, 0, 1, 1, 1], 
+[0, 1, 1, 1, 1, 1, 0, 0, 1, 1], 
+[0, 1, 1, 1, 1, 1, 0, 0, 1, 1], 
+[0, 1, 1, 1, 1, 1, 0, 0, 0, 0], 
+[0, 1, 1, 1, 0, 0, 0, 0, 0, 0], 
+[0, 1, 1, 1, 0, 0, 0, 0, 0, 0], 
+[0, 1, 1, 1, 0, 0, 0, 0, 0, 0]]))
+
+
+# 9번
+
+def solution(arr, n, j):
+    cycle = sum(arr)
+
+    j %= cycle
+
+    if j == 0:
+        return n
+        
+    for i in range(n):
+        j -= arr[i]
+        if j <= 0:
+            return i + 1
+    return 0
+
+print(solution([7, 5, 2, 9, 3, 4], 6, 80))
+print(solution([4, 11, 6, 5, 7, 1, 2, 9, 15], 9, 444))
+print(solution([1, 3, 1, 3, 1], 5, 131))
+
+# 10번
+
+min_value = 10000
+rooms = []
+visited = []
+length = 0
+
+
+def patrol(now, e_sum):
+    global min_value
+
+    if e_sum < min_value:
+        if 0 not in visited:
+            min_value = min(min_value, e_sum + rooms[now][0])
+            return
+
+        for next_room in range(length):
+            if next_room != now and visited[next_room] == 0:
+                visited[next_room] = 1
+                patrol(next_room, e_sum + rooms[now][next_room])
+                visited[next_room] = 0
+
+
+def solution(arr, N):
+    global length, rooms, visited, min_value
+    visited = [0] * N
+    visited[0] = 1
+    length = N
+    rooms = arr
+    min_value = 10000
+    patrol(0, 0)
+
+    return min_value
+
+print(solution([[0, 25, 7, 56, 12], [4, 0, 31, 88, 45], [62, 19, 0, 71, 23], [95, 36, 51, 0, 44], [16, 41, 66, 73, 0]], 5))
+print(solution([[0, 11, 24, 98, 46], [53, 0, 29, 62, 75], [82, 36, 0, 5, 18], [42, 54, 33, 0, 21], [9, 54, 92, 86, 0]], 5))
+print(solution([[0, 18, 34, 22], [48, 0, 55, 61], [18, 7, 0, 15], [71, 86, 94, 0]], 4))
+
 '''
-
-
